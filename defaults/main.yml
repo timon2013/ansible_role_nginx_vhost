@@ -1,0 +1,6 @@
+---
+# defaults file for ansible_role_nginx_vhost
+
+ansible_role_nginx_vhost_path_available: /etc/nginx/sites-available
+ansible_role_nginx_vhost_path_enabled: /etc/nginx/sites-enabled
+ansible_role_nginx_vhost_name: vhost_test

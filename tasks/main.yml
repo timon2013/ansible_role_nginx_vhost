@@ -1,0 +1,21 @@
+---
+# tasks file for ansible_role_nginx_vhost
+
+#ansible_role_nginx_vhost_path_available: /etc/nginx/sites-available
+#ansible_role_nginx_vhost_path_enabled: /etc/nginx/sites-enabled
+#ansible_role_nginx_vhost_name: vhost_test
+
+- name: Copy vhost
+  template:
+    src: unit_wordpress_vhost.conf.j2
+    dest: "{{ ansible_role_nginx_vhost_path_available }}/{{ ansible_role_nginx_vhost_name }}.conf"
+
+#ln -s ../sites-available/unit_wordpress_vhost.conf.conf ./unit_wordpress_vhost.conf.conf
+- name: Create a symbolic link and enble vhost
+  file:
+    src: "{{ ansible_role_nginx_vhost_path_available }}/{{ ansible_role_nginx_vhost_name }}.conf"
+    dest: "{{ ansible_role_nginx_vhost_path_enabled }}/{{ ansible_role_nginx_vhost_name }}.conf"
+    owner: root
+    group: root
+    state: link
+
